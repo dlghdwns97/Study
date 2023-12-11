@@ -24,11 +24,13 @@ public class PressBtn : MonoBehaviour
     public float zdir;
 
     [SerializeField] private GameObject _gimmickForObject;
+
+    private const string PLAYER = "Player";
     private void OnTriggerStay(Collider other)
     {
         ForceReceiver forceReceiver = other.gameObject.GetComponent<ForceReceiver>();
         
-        if (forceReceiver != null && other.CompareTag("Player"))
+        if (forceReceiver != null && other.CompareTag("PLAYER"))
         {
             _gimmickForObject.GetComponent<Stage3GimmickManager>().MovingParentObjectWithVelocity(btn, xdir, ydir, zdir);
             other.gameObject.transform.SetParent(btn.transform.parent);
@@ -36,7 +38,7 @@ public class PressBtn : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other != null && other.CompareTag("Player"))
+        if (other != null && other.CompareTag("PLAYER"))
         {
             _gimmickForObject.GetComponent<Stage3GimmickManager>().MovingParentObjectWithVelocity(btn, 0, 0, 0);
             other.gameObject.transform.SetParent(null);
