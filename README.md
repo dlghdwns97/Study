@@ -30,7 +30,7 @@ public class PressBtn : MonoBehaviour
     {
         ForceReceiver forceReceiver = other.gameObject.GetComponent<ForceReceiver>();
         
-        if (forceReceiver != null && other.CompareTag("PLAYER"))
+        if (forceReceiver != null && other.CompareTag(PLAYER))
         {
             _gimmickForObject.GetComponent<Stage3GimmickManager>().MovingParentObjectWithVelocity(btn, xdir, ydir, zdir);
             other.gameObject.transform.SetParent(btn.transform.parent);
@@ -38,7 +38,7 @@ public class PressBtn : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other != null && other.CompareTag("PLAYER"))
+        if (other != null && other.CompareTag(PLAYER))
         {
             _gimmickForObject.GetComponent<Stage3GimmickManager>().MovingParentObjectWithVelocity(btn, 0, 0, 0);
             other.gameObject.transform.SetParent(null);
